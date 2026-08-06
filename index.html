@@ -293,7 +293,7 @@ details p{color:var(--muted);line-height:1.6;margin-top:12px}
           <div class="hero-point">✓ <span><b>Con protocolos de rescate</b> para volver en la siguiente decisión.</span></div>
         </div>
 
-        <a class="cta js-buy" href="https://pay.hotmart.com/L106914038U" target="_blank" rel="noopener">
+        <a class="cta js-buy" onclick="if(typeof fbq!=='undefined'){fbq('track','InitiateCheckout');}" href="https://pay.hotmart.com/L106914038U" target="_blank" rel="noopener">
           QUIERO EMPEZAR MI REINICIO
         </a>
         <div class="cta-sub">Acceso inmediato · Pago procesado por Hotmart</div>
@@ -503,7 +503,7 @@ details p{color:var(--muted);line-height:1.6;margin-top:12px}
         <div class="value-item">✓ Acceso inmediato</div>
       </div>
 
-      <a class="cta js-buy" href="https://pay.hotmart.com/L106914038U" target="_blank" rel="noopener">
+      <a class="cta js-buy" onclick="if(typeof fbq!=='undefined'){fbq('track','InitiateCheckout');}" href="https://pay.hotmart.com/L106914038U" target="_blank" rel="noopener">
         EMPEZAR MI REINICIO AHORA
       </a>
 
@@ -553,7 +553,7 @@ details p{color:var(--muted);line-height:1.6;margin-top:12px}
       Dentro de 14 días puedes volver a decir “otra vez fallé” o puedes tener una racha visible
       que demuestre que ya no reaccionas igual ante un tropiezo.
     </p>
-    <a class="cta js-buy" href="https://pay.hotmart.com/L106914038U" target="_blank" rel="noopener">
+    <a class="cta js-buy" onclick="if(typeof fbq!=='undefined'){fbq('track','InitiateCheckout');}" href="https://pay.hotmart.com/L106914038U" target="_blank" rel="noopener">
       QUIERO COMPLETAR MIS 14 DÍAS
     </a>
   </div>
@@ -564,7 +564,7 @@ details p{color:var(--muted);line-height:1.6;margin-top:12px}
 </footer>
 
 <div class="sticky">
-  <a class="cta js-buy" href="https://pay.hotmart.com/L106914038U" target="_blank" rel="noopener">
+  <a class="cta js-buy" onclick="if(typeof fbq!=='undefined'){fbq('track','InitiateCheckout');}" href="https://pay.hotmart.com/L106914038U" target="_blank" rel="noopener">
     EMPEZAR POR $249 MXN
   </a>
 </div>
@@ -582,5 +582,21 @@ document.querySelectorAll('.js-buy').forEach(function(btn){
   });
 });
 </script>
+
+<script>
+let scroll50Sent=false;
+window.addEventListener('scroll',function(){
+ if(scroll50Sent)return;
+ const m=document.documentElement.scrollHeight-window.innerHeight;
+ if(m>0 && window.scrollY/m>=0.5){
+   scroll50Sent=true;
+   if(typeof fbq!=='undefined'){fbq('trackCustom','Scroll50');}
+ }
+});
+setTimeout(function(){
+ if(typeof fbq!=='undefined'){fbq('trackCustom','EngagedVisitor');}
+},60000);
+</script>
+
 </body>
 </html>
