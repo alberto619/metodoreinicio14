@@ -2700,7 +2700,7 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
 
 <!-- Tracking de checkout sin bloquear clicks ni interferir con Meta -->
-<script id="checkout-tracking-clean">
+<script id="checkout-tracking-corrected-v28">
 (function(){
   var HOTMART_HOST = 'pay.hotmart.com';
   var HOTMART_PATH = '/L106914038U';
@@ -2731,8 +2731,9 @@ document.addEventListener('DOMContentLoaded', function(){
 
     try{
       if(typeof window.fbq === 'function'){
+        // Un clic hacia Hotmart significa INICIO DE CHECKOUT, no compra.
+        // Purchase debe enviarse únicamente después de que Hotmart confirme el pago.
         window.fbq('track','InitiateCheckout', params);
-        window.fbq('trackCustom','Comprar', params);
       }
     }catch(e){}
   }
