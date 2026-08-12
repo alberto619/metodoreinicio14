@@ -2733,7 +2733,7 @@ document.addEventListener('DOMContentLoaded', function(){
       if(typeof window.fbq === 'function'){
         // Un clic hacia Hotmart significa INICIO DE CHECKOUT, no compra.
         // Purchase debe enviarse únicamente después de que Hotmart confirme el pago.
-        window.fbq('track','InitiateCheckout', params);
+        /* InitiateCheckout centralizado en sales-attribution-final-v29 */
       }
     }catch(e){}
   }
@@ -2789,6 +2789,92 @@ document.addEventListener('DOMContentLoaded', function(){
       }catch(e){}
     },true);
   });
+})();
+</script>
+
+
+<script id="sales-attribution-final-v29">
+(function(){
+  function clean(v){
+    return (v == null ? '' : String(v)).trim().slice(0,120);
+  }
+
+  function readStored(){
+    var keys = ['reinicio_attr','reinicio_attribution','reinicioAttr','attribution'];
+    for(var i=0;i<keys.length;i++){
+      try{
+        var raw = localStorage.getItem(keys[i]);
+        if(!raw) continue;
+        var obj = JSON.parse(raw);
+        if(obj && (obj.src || obj.camp)){
+          return {src:clean(obj.src), camp:clean(obj.camp)};
+        }
+      }catch(e){}
+    }
+    return {src:'',camp:''};
+  }
+
+  var q = new URLSearchParams(window.location.search);
+  var incoming = {
+    src: clean(q.get('src')),
+    camp: clean(q.get('camp'))
+  };
+  var stored = readStored();
+
+  var attr = {
+    src: incoming.src || stored.src || 'direct',
+    camp: incoming.camp || stored.camp || ''
+  };
+
+  // Persistir también en esta página para navegación/reloads.
+  try{
+    localStorage.setItem('reinicio_sales_attr', JSON.stringify(attr));
+  }catch(e){}
+
+  window.REINICIO_SALES_ATTR = attr;
+
+  function withAttr(url){
+    try{
+      var u = new URL(url, window.location.href);
+      if(attr.src && attr.src !== 'direct') u.searchParams.set('src', attr.src);
+      if(attr.camp) u.searchParams.set('camp', attr.camp);
+      return u.toString();
+    }catch(e){
+      return url;
+    }
+  }
+
+  // Añadir atribución a TODOS los enlaces de Hotmart sin alterar su destino.
+  function decorateHotmartLinks(){
+    document.querySelectorAll('a[href*="pay.hotmart.com"]').forEach(function(a){
+      a.href = withAttr(a.href);
+    });
+  }
+
+  decorateHotmartLinks();
+  document.addEventListener('DOMContentLoaded', decorateHotmartLinks);
+
+  // Captura única y centralizada del inicio de checkout.
+  // NO dispara Comprar ni Purchase.
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest ? e.target.closest('a[href*="pay.hotmart.com"]') : null;
+    if(!a) return;
+
+    // Asegura que el href lleve src/camp incluso si fue creado/modificado dinámicamente.
+    a.href = withAttr(a.href);
+
+    try{
+      if(typeof fbq === 'function'){
+        fbq('track','InitiateCheckout',{
+          content_name:'Metodo Reinicio 14',
+          value:249,
+          currency:'MXN',
+          src:attr.src,
+          camp:attr.camp
+        });
+      }
+    }catch(err){}
+  }, true);
 })();
 </script>
 
