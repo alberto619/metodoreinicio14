@@ -6300,10 +6300,10 @@ details,
     z-index:1 !important;
   }
 }
-</style><style id="rescate24-mobile-anchor-fix-v2">
-#productShowcaseMobile{scroll-margin-top:18px}
-@media(min-width:701px){
-  #productShowcaseMobile{scroll-margin-top:0}
+</style><style id="rescate24-destination-final-style">
+#productShowcase,
+#productShowcaseMobile{
+  scroll-margin-top:16px;
 }
 </style></head>
 <body>
@@ -7522,47 +7522,47 @@ document.addEventListener('DOMContentLoaded', function(){
   window.addEventListener('pageshow', apply);
   window.addEventListener('storage', apply);
 })();
-</script><script id="rescate24-mobile-scroll-fix-v2">
+</script><script id="rescate24-destination-final">
 (function(){
-  function mobile(){ return window.matchMedia('(max-width:700px)').matches; }
-
-  function shouldFix(){
-    if(!mobile()) return false;
-    var h = location.hash || '';
-    if(h !== '#productShowcase' && h !== '#productShowcaseMobile') return false;
-    return true;
+  function fromRescate(){
+    try{
+      return new URLSearchParams(location.search).get('src') === 'memberapp-rescate24h';
+    }catch(e){
+      return false;
+    }
   }
 
-  function go(){
-    if(!shouldFix()) return;
-    var el = document.getElementById('productShowcaseMobile');
+  function target(){
+    if(window.matchMedia('(max-width:700px)').matches){
+      return document.getElementById('productShowcaseMobile');
+    }
+    return document.getElementById('productShowcase');
+  }
+
+  function place(){
+    if(!fromRescate()) return;
+    var el = target();
     if(!el) return;
 
-    var y = el.getBoundingClientRect().top + window.pageYOffset - 12;
-    window.scrollTo(0, Math.max(0,y));
-
-    try{
-      history.replaceState(null,'',location.pathname + location.search + '#productShowcaseMobile');
-    }catch(e){}
+    var top = el.getBoundingClientRect().top + window.pageYOffset - 10;
+    window.scrollTo({top:Math.max(0,top), left:0, behavior:'auto'});
   }
 
-  function burst(){
-    go();
-    setTimeout(go,80);
-    setTimeout(go,250);
-    setTimeout(go,650);
-    setTimeout(go,1200);
-    setTimeout(go,2200);
+  function run(){
+    place();
+    [80,200,450,900,1500,2600].forEach(function(ms){
+      setTimeout(place,ms);
+    });
   }
 
   if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', burst, {once:true});
-  } else {
-    burst();
+    document.addEventListener('DOMContentLoaded',run,{once:true});
+  }else{
+    run();
   }
 
-  window.addEventListener('load', burst, {once:true});
-  window.addEventListener('pageshow', burst);
+  window.addEventListener('load',run,{once:true});
+  window.addEventListener('pageshow',run);
 })();
 </script></body>
 </html>
