@@ -6300,11 +6300,6 @@ details,
     z-index:1 !important;
   }
 }
-</style><style id="rescate24-destination-final-style">
-#productShowcase,
-#productShowcaseMobile{
-  scroll-margin-top:16px;
-}
 </style></head>
 <body>
 <header class="hero">
@@ -7521,80 +7516,6 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   window.addEventListener('pageshow', apply);
   window.addEventListener('storage', apply);
-})();
-</script><script id="rescate24-destination-final">
-(function(){
-  function fromRescate(){
-    try{
-      return new URLSearchParams(location.search).get('src') === 'memberapp-rescate24h';
-    }catch(e){
-      return false;
-    }
-  }
-
-  function getTarget(){
-    return window.matchMedia('(max-width:700px)').matches
-      ? document.getElementById('productShowcaseMobile')
-      : document.getElementById('productShowcase');
-  }
-
-  function go(){
-    if(!fromRescate()) return;
-    var el = getTarget();
-    if(!el) return;
-
-    var y = el.getBoundingClientRect().top + window.pageYOffset - 12;
-    window.scrollTo(0, Math.max(0, y));
-  }
-
-  function stabilize(){
-    if(!fromRescate()) return;
-
-    /* El problema en móvil es el cambio de altura mientras cargan fotos/fuentes.
-       Recolocamos el scroll hasta que el layout termina de estabilizar. */
-    var start = Date.now();
-    var timer = setInterval(function(){
-      go();
-      if(Date.now() - start > 6500){
-        clearInterval(timer);
-        go();
-      }
-    }, 140);
-
-    /* También corregir cada vez que una imagen anterior termina de cargar */
-    document.querySelectorAll('img').forEach(function(img){
-      if(!img.complete){
-        img.addEventListener('load', go, {once:false});
-        img.addEventListener('error', go, {once:false});
-      }
-    });
-
-    if(document.fonts && document.fonts.ready){
-      document.fonts.ready.then(function(){
-        go();
-        setTimeout(go,150);
-        setTimeout(go,500);
-      });
-    }
-
-    if(window.ResizeObserver){
-      var target = getTarget();
-      if(target){
-        var ro = new ResizeObserver(function(){ go(); });
-        ro.observe(document.body);
-        setTimeout(function(){ try{ro.disconnect();}catch(e){} }, 7000);
-      }
-    }
-  }
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', stabilize, {once:true});
-  }else{
-    stabilize();
-  }
-
-  window.addEventListener('load', stabilize, {once:true});
-  window.addEventListener('pageshow', stabilize);
 })();
 </script></body>
 </html>
