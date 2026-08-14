@@ -6693,7 +6693,7 @@ details,
 </div>
 </div>
 </div>
-<div aria-label="Entregables incluidos" class="mobile-products">
+<div aria-label="Entregables incluidos" class="mobile-products" id="productShowcaseMobile">
 <details class="mobile-product">
 <summary>
 <span class="mobile-product-icon">📱</span>
@@ -7517,5 +7517,52 @@ document.addEventListener('DOMContentLoaded', function(){
   window.addEventListener('pageshow', apply);
   window.addEventListener('storage', apply);
 })();
-</script></body>
+</script>
+<script id="fix-rescate24-product-showcase-mobile">
+(function(){
+  function isMobile(){
+    return window.matchMedia && window.matchMedia('(max-width:700px)').matches;
+  }
+
+  function fromRescate24(){
+    try{
+      return new URLSearchParams(location.search).get('src') === 'memberapp-rescate24h';
+    }catch(e){
+      return false;
+    }
+  }
+
+  function placeRescateVisitor(){
+    if(!isMobile()) return;
+    if(!fromRescate24()) return;
+    if(location.hash !== '#productShowcase' && location.hash !== '#productShowcaseMobile') return;
+
+    var target = document.getElementById('productShowcaseMobile');
+    if(!target) return;
+
+    // Evita que el ancla de escritorio (oculta en móvil) deje al navegador
+    // en una posición incorrecta. No toca el flujo normal de la página.
+    requestAnimationFrame(function(){
+      target.scrollIntoView({behavior:'auto', block:'start'});
+      try{
+        history.replaceState(null, '', location.pathname + location.search + '#productShowcaseMobile');
+      }catch(e){}
+    });
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){
+      setTimeout(placeRescateVisitor, 80);
+    });
+  }else{
+    setTimeout(placeRescateVisitor, 80);
+  }
+
+  window.addEventListener('pageshow', function(){
+    setTimeout(placeRescateVisitor, 80);
+  });
+})();
+</script>
+
+</body>
 </html>
