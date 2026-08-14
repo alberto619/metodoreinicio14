@@ -7401,6 +7401,7 @@ document.addEventListener('DOMContentLoaded', function(){
 <script id="reinicio-test-map-state-v8">
 (function(){
   var KEY = 'reinicio14_quiz_result_v9';
+  var QUIZ_BASE = 'https://alberto619.github.io/quiz-reinicio/';
 
   var PROFILES = {
     resR:{name:'CICLO REBOTE',summary:'Tu problema no parece ser empezar. Aparece cuando intentas sostener lo que empezaste.'},
@@ -7418,6 +7419,12 @@ document.addEventListener('DOMContentLoaded', function(){
     }catch(e){
       return null;
     }
+  }
+
+  function mapUrl(saved){
+    return saved && saved.id && PROFILES[saved.id]
+      ? QUIZ_BASE + '#' + saved.id
+      : QUIZ_BASE;
   }
 
   function trackSalesToQuiz(hasSaved){
@@ -7443,7 +7450,7 @@ document.addEventListener('DOMContentLoaded', function(){
       if(desc) desc.textContent = p.summary;
       if(btn){
         btn.textContent = 'VER MI MAPA';
-        btn.setAttribute('href','https://alberto619.github.io/quiz-reinicio/?mapa=1');
+        btn.setAttribute('href', mapUrl(saved));
         btn.onclick = function(){ trackSalesToQuiz(true); };
       }
       if(note) note.textContent = 'Tu resultado está guardado para que puedas volver cuando lo necesites.';
@@ -7453,7 +7460,7 @@ document.addEventListener('DOMContentLoaded', function(){
       if(desc && desc.dataset.v8OriginalText) desc.textContent = desc.dataset.v8OriginalText;
       if(btn){
         if(btn.dataset.v8OriginalText) btn.textContent = btn.dataset.v8OriginalText;
-        btn.setAttribute('href', btn.dataset.v8OriginalHref || 'https://alberto619.github.io/quiz-reinicio/');
+        btn.setAttribute('href', btn.dataset.v8OriginalHref || QUIZ_BASE);
         btn.onclick = function(){ trackSalesToQuiz(false); };
       }
       if(note && note.dataset.v8OriginalText) note.textContent = note.dataset.v8OriginalText;
@@ -7484,10 +7491,13 @@ document.addEventListener('DOMContentLoaded', function(){
       if(hasSaved){
         mapFab.classList.add('is-visible');
         mapFab.style.display = 'flex';
-        mapFab.setAttribute('href','https://alberto619.github.io/quiz-reinicio/?mapa=1');
+        mapFab.setAttribute('href', mapUrl(saved));
+        mapFab.onclick = function(){ trackSalesToQuiz(true); };
       }else{
         mapFab.classList.remove('is-visible');
         mapFab.style.display = 'none';
+        mapFab.setAttribute('href', QUIZ_BASE);
+        mapFab.onclick = null;
       }
     }
 
