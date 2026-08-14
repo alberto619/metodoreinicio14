@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 
 <html lang="es">
-<head>
+<head><script id="rescate24-mobile-entry-head">
+(function(){
+  try{
+    var q = new URLSearchParams(location.search);
+    if(q.get('src') === 'memberapp-rescate24h' &&
+       window.matchMedia('(max-width:700px)').matches){
+      document.documentElement.classList.add('rescate24-mobile-entry');
+      if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    }
+  }catch(e){}
+})();
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
 <title>Método Reinicio 14 — Deja de empezar de cero</title>
@@ -6300,6 +6311,25 @@ details,
     z-index:1 !important;
   }
 }
+</style><style id="rescate24-mobile-entry-style">
+@media(max-width:700px){
+  /* Para tráfico que YA hizo quiz + rescate:
+     la landing EMPIEZA físicamente en entregables. No hay salto. */
+  html.rescate24-mobile-entry body > header.hero,
+  html.rescate24-mobile-entry body > #mobile-swipe-v2{
+    display:none !important;
+  }
+
+  html.rescate24-mobile-entry,
+  html.rescate24-mobile-entry body{
+    scroll-behavior:auto !important;
+  }
+
+  html.rescate24-mobile-entry #mobile-v4-compact{
+    margin-top:0 !important;
+    padding-top:20px !important;
+  }
+}
 </style></head>
 <body>
 <header class="hero">
@@ -6693,7 +6723,7 @@ details,
 </div>
 </div>
 </div>
-<div aria-label="Entregables incluidos" class="mobile-products" id="productShowcaseMobile">
+<div aria-label="Entregables incluidos" class="mobile-products">
 <details class="mobile-product">
 <summary>
 <span class="mobile-product-icon">📱</span>
@@ -7516,6 +7546,22 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   window.addEventListener('pageshow', apply);
   window.addEventListener('storage', apply);
+})();
+</script><script id="rescate24-mobile-entry-once">
+(function(){
+  if(!document.documentElement.classList.contains('rescate24-mobile-entry')) return;
+
+  function startAtTopOnce(){
+    window.scrollTo(0,0);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', startAtTopOnce, {once:true});
+  }else{
+    startAtTopOnce();
+  }
+
+  window.addEventListener('load', startAtTopOnce, {once:true});
 })();
 </script></body>
 </html>
