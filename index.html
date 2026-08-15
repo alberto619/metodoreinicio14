@@ -7505,6 +7505,28 @@ document.addEventListener('DOMContentLoaded', function(){
     var step1 = document.getElementById('mobile-step1-v19');
     var step2 = document.getElementById('mobile-step2-v19');
 
+    /* Si viene desde Rescate 24H, esta visita ya pasó por test + regalo.
+       No mostrar NINGUNA puerta gratuita otra vez. */
+    var fromRescue24 = false;
+    try{
+      var q = new URLSearchParams(window.location.search);
+      fromRescue24 = q.get('src') === 'memberapp-rescate24h'
+        || (document.referrer || '').indexOf('memberapp.pro') !== -1;
+    }catch(e){}
+
+    if(fromRescue24){
+      document.body.classList.remove('has-saved-map','needs-quiz');
+      if(mid) mid.style.setProperty('display','none','important');
+      if(finalBridge) finalBridge.style.setProperty('display','none','important');
+      if(mapFab){
+        mapFab.classList.remove('is-visible');
+        mapFab.style.setProperty('display','none','important');
+        mapFab.removeAttribute('href');
+        mapFab.onclick = null;
+      }
+      return;
+    }
+
     if(mid) setBridgeState(mid, saved);
     if(finalBridge) setBridgeState(finalBridge, saved);
 
