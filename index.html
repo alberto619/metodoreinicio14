@@ -2,6 +2,17 @@
 
 <html lang="es">
 <head>
+<script id="from-rescue24-state">
+(function(){
+  try{
+    var src = new URLSearchParams(location.search).get('src');
+    if(src === 'memberapp-rescate24h'){
+      document.documentElement.classList.add('from-rescue24');
+    }
+  }catch(e){}
+})();
+</script>
+
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
 <title>Método Reinicio 14 — Deja de empezar de cero</title>
@@ -6300,7 +6311,16 @@ details,
     z-index:1 !important;
   }
 }
-</style></head>
+</style>
+<style id="from-rescue24-hide-free-bridges">
+html.from-rescue24 .sales-quiz-bridge,
+html.from-rescue24 .sales-to-quiz,
+html.from-rescue24 #savedResultFab{
+  display:none !important;
+}
+</style>
+
+</head>
 <body>
 <header class="hero">
 <div class="wrap">
