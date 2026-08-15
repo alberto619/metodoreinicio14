@@ -7445,15 +7445,19 @@ document.addEventListener('DOMContentLoaded', function(){
 
     if(saved){
       var p = PROFILES[saved.id];
-      if(eyebrow) eyebrow.textContent = 'TU MAPA YA ESTÁ LISTO';
-      if(title) title.textContent = 'Tu perfil: ' + p.name;
-      if(desc) desc.textContent = p.summary;
+      if(eyebrow) eyebrow.textContent = 'YA CONOCES TU PERFIL';
+      if(title) title.textContent = 'Ahora da el siguiente paso gratis';
+      if(desc) desc.textContent = 'Tu mapa ya está listo. Activa gratis tu Plan de Rescate 24H y descubre qué hacer hoy para no volver a empezar de cero.';
       if(btn){
-        btn.textContent = 'VER MI MAPA';
-        btn.setAttribute('href', mapUrl(saved));
-        btn.onclick = function(){ trackSalesToQuiz(true); };
+        btn.textContent = 'OBTÉN GRATIS TU PLAN DE RESCATE 24H';
+        btn.setAttribute('href', 'https://botonreinicio.memberapp.pro/curso-gratuito/d3cddc63-efe3-4528-8bed-386d077c307b');
+        btn.setAttribute('target','_blank');
+        btn.setAttribute('rel','noopener');
+        btn.onclick = function(){
+          try{ if(typeof window.fbq === 'function') window.fbq('trackCustom','SalesToRescue24'); }catch(e){}
+        };
       }
-      if(note) note.textContent = 'Tu resultado está guardado para que puedas volver cuando lo necesites.';
+      if(note) note.textContent = 'Acceso gratuito · entra directo a la herramienta.';
     }else{
       if(eyebrow && eyebrow.dataset.v8OriginalText) eyebrow.textContent = eyebrow.dataset.v8OriginalText;
       if(title && title.dataset.v8OriginalText) title.textContent = title.dataset.v8OriginalText;
@@ -7491,8 +7495,14 @@ document.addEventListener('DOMContentLoaded', function(){
       if(hasSaved){
         mapFab.classList.add('is-visible');
         mapFab.style.display = 'flex';
-        mapFab.setAttribute('href', mapUrl(saved));
-        mapFab.onclick = function(){ trackSalesToQuiz(true); };
+        mapFab.setAttribute('href', 'https://botonreinicio.memberapp.pro/curso-gratuito/d3cddc63-efe3-4528-8bed-386d077c307b');
+        mapFab.setAttribute('target','_blank');
+        mapFab.setAttribute('rel','noopener');
+        var fabLabel = mapFab.querySelector('.saved-result-fab__label');
+        if(fabLabel) fabLabel.textContent = 'PLAN 24H GRATIS';
+        mapFab.onclick = function(){
+          try{ if(typeof window.fbq === 'function') window.fbq('trackCustom','SalesToRescue24'); }catch(e){}
+        };
       }else{
         mapFab.classList.remove('is-visible');
         mapFab.style.display = 'none';
