@@ -6498,8 +6498,7 @@ html.from-rescue24 .sales-to-quiz{
 </style>
 
 
-<style id="rescue24-discount-cta-v2">
-/* SOLO para quien llega desde Rescate 24H */
+<style id="rescue24-discount-fix">
 #rescue24-exclusive-cta{display:none}
 
 html.from-rescue24 #rescue24-exclusive-cta{
@@ -6529,7 +6528,6 @@ html.from-rescue24 #rescue24-exclusive-cta{
     inset 0 1px 0 rgba(255,255,255,.34);
 }
 html.from-rescue24 #rescue24-exclusive-cta small{
-  display:block;
   color:#ffe0ce;
   font-size:.58rem;
   font-weight:900;
@@ -6537,21 +6535,10 @@ html.from-rescue24 #rescue24-exclusive-cta small{
   margin-bottom:2px;
 }
 html.from-rescue24 #rescue24-exclusive-cta strong{
-  display:block;
   font-size:.92rem;
   line-height:1.15;
 }
-
-/* En la ruta Rescate ocultamos los CTA móviles genéricos para no competir. */
-html.from-rescue24 #conversion-fab-v8,
-html.from-rescue24 #mobile-step1-v19,
-html.from-rescue24 #mobile-step2-v19{
-  display:none!important;
-}
-
-html.from-rescue24 body{
-  padding-bottom:100px!important;
-}
+html.from-rescue24 body{padding-bottom:105px!important}
 
 @supports (bottom: env(safe-area-inset-bottom)){
   html.from-rescue24 #rescue24-exclusive-cta{
@@ -7898,56 +7885,41 @@ document.addEventListener('DOMContentLoaded', function(){
 
 <a id="rescue24-exclusive-cta"
    href="https://pay.hotmart.com/L106914038U?off=m3vkyn3j"
-   rel="noopener"
-   target="_blank">
+   rel="noopener" target="_blank">
   <small>BENEFICIO DESBLOQUEADO · RESCATE 24H</small>
   <strong>RECLAMAR MI 15% Y EMPEZAR REINICIO 14 →</strong>
 </a>
 
 
-<script id="rescue24-discount-routing-v2">
+<script id="rescue24-discount-fix">
 (function(){
   if(!document.documentElement.classList.contains('from-rescue24')) return;
-
   var SPECIAL='https://pay.hotmart.com/L106914038U?off=m3vkyn3j';
 
-  function isPurchaseLink(a){
-    if(!a) return false;
-    if(a.id === 'rescue24-exclusive-cta') return true;
-    if(a.classList && a.classList.contains('js-buy')) return true;
-    try{
-      var u=new URL(a.href,location.href);
-      return u.hostname==='pay.hotmart.com' && u.pathname.indexOf('/L106914038U')===0;
-    }catch(e){ return false; }
-  }
-
-  function forceSpecial(){
-    document.querySelectorAll('a').forEach(function(a){
-      if(isPurchaseLink(a)){
-        a.href=SPECIAL;
-        if(a.classList.contains('js-buy')){
-          if(!a.dataset.rescueCopy){
-            a.dataset.rescueCopy='1';
-            a.textContent='RECLAMAR MI 15% Y EMPEZAR →';
-          }
-        }
-      }
+  function apply(){
+    document.querySelectorAll('a[href*="pay.hotmart.com/L106914038U"]').forEach(function(a){
+      a.href=SPECIAL;
     });
+    document.querySelectorAll('a.js-buy').forEach(function(a){
+      a.href=SPECIAL;
+      a.textContent='RECLAMAR MI 15% Y EMPEZAR →';
+    });
+
+    var m2=document.getElementById('mobile-step2-v19');
+    if(m2){
+      m2.href=SPECIAL;
+      var k=m2.querySelector('.m19-kicker');
+      var m=m2.querySelector('.m19-main');
+      if(k) k.textContent='BENEFICIO RESCATE 24H';
+      if(m) m.textContent='ACTIVAR MI 15% →';
+    }
   }
 
-  /* Protege contra scripts antiguos que vuelvan a colocar el checkout normal. */
-  document.addEventListener('click',function(ev){
-    var a=ev.target.closest && ev.target.closest('a');
-    if(!isPurchaseLink(a)) return;
-    a.href=SPECIAL;
-  },true);
-
-  forceSpecial();
-  setTimeout(forceSpecial,250);
-  setTimeout(forceSpecial,1200);
-
-  var mo=new MutationObserver(function(){ forceSpecial(); });
-  mo.observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['href']});
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',apply,{once:true});
+  }else{
+    apply();
+  }
 })();
 </script>
 
