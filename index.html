@@ -6,7 +6,7 @@
 (function(){
   try{
     var src = new URLSearchParams(location.search).get('src');
-    if(src === 'memberapp-rescate24h'){
+    if(src === 'memberapp-rescate24h' || src === 'rescate24h'){
       document.documentElement.classList.add('from-rescue24');
     }
   }catch(e){}
@@ -4400,7 +4400,7 @@ details p{color:var(--muted);line-height:1.6;margin-top:12px}
 </style><style id="v9-black-red-experimental-colors-only">
 /* VARIANTE VISUAL: SOLO COLOR. Sin tocar geometría, JS, tamaños ni distribución. */
 :root{
-  --bg:#111111 !important;
+  --bg:#363530 !important;
   --ink:#f5f1e9 !important;
   --muted:#b8b3aa !important;
   --green:#9e1f2f !important;
@@ -4412,21 +4412,21 @@ details p{color:var(--muted);line-height:1.6;margin-top:12px}
 
 html,
 body{
-  background:#111111 !important;
+  background:#363530 !important;
   color:#f5f1e9 !important;
 }
 
 .hero{
   background:
     radial-gradient(circle at 85% 15%,rgba(190,35,48,.24),transparent 32%),
-    linear-gradient(145deg,#0c0c0c,#1b1b1b) !important;
+    linear-gradient(145deg,#34332F,#1b1b1b) !important;
 }
 
 .section.white,
 .section.soft,
 .final,
 .footer{
-  background:#111111 !important;
+  background:#363530 !important;
   color:#f5f1e9 !important;
 }
 
@@ -4519,10 +4519,10 @@ hr,
 /* Safe area: evitar volver a blanco */
 @media(max-width:700px){
   html{
-    background:#0c0c0c !important;
+    background:#34332F !important;
   }
   body::before{
-    background:#0c0c0c !important;
+    background:#34332F !important;
   }
 }
 </style><style id="black-red-marfil-map-contrast-only">
@@ -4566,13 +4566,13 @@ hr,
 #savedResultFab{
   background:linear-gradient(180deg,#fffaf0,#e7ddcf) !important;
   border:1px solid #ffffff !important;
-  color:#111111 !important;
+  color:#363530 !important;
   text-shadow:none !important;
 }
 
 #savedResultFab *,
 #savedResultFab .saved-result-fab__label{
-  color:#111111 !important;
+  color:#363530 !important;
   text-shadow:none !important;
   font-weight:950 !important;
 }
@@ -4581,7 +4581,7 @@ hr,
 #quiz-bridge-mid .sales-quiz-bridge__btn[href*="mapa"],
 #quiz-bridge-final .sales-quiz-bridge__btn[href*="mapa"]{
   background:linear-gradient(180deg,#fffaf0,#e7ddcf) !important;
-  color:#111111 !important;
+  color:#363530 !important;
   border-color:#ffffff !important;
   text-shadow:none !important;
   box-shadow:
@@ -4592,7 +4592,7 @@ hr,
 
 #quiz-bridge-mid .sales-quiz-bridge__btn[href*="mapa"] *,
 #quiz-bridge-final .sales-quiz-bridge__btn[href*="mapa"] *{
-  color:#111111 !important;
+  color:#363530 !important;
 }
 
 </style><style id="black-red-marfil-glass-final-only">
@@ -4621,7 +4621,7 @@ hr,
 .v4-swipe-cue,
 .v5-swipe-cue,
 .inner-swipe-label{
-  background:linear-gradient(180deg,#2a2a2a,#151515) !important;
+  background:linear-gradient(180deg,#2a2a2a,#383732) !important;
   color:#fff7ed !important;
   border:1px solid rgba(255,255,255,.14) !important;
   box-shadow:
@@ -4788,7 +4788,7 @@ details h2,details h3,details strong,
 #savedResultFab *,
 #quiz-bridge-mid .sales-quiz-bridge__btn[href*="mapa"],
 #quiz-bridge-final .sales-quiz-bridge__btn[href*="mapa"]{
-  color:#111111 !important;
+  color:#363530 !important;
 }
 </style><style id="contrast-carousel-alignment-only">
 
@@ -5150,7 +5150,7 @@ details,
       rgba(218,205,188,.98) 76%,
       rgba(177,161,143,.98) 100%) !important;
   border:1px solid rgba(255,255,255,.95) !important;
-  color:#111111 !important;
+  color:#363530 !important;
   box-shadow:
     0 5px 0 rgba(139,124,108,.95),
     0 10px 20px rgba(0,0,0,.26),
@@ -5199,7 +5199,7 @@ details,
 #savedResultFab > *{
   position:relative !important;
   z-index:1 !important;
-  color:#111111 !important;
+  color:#363530 !important;
   font-weight:950 !important;
 }
 
@@ -5213,7 +5213,7 @@ details,
       #fffaf0 28%,
       #e9dfd1 68%,
       #c6b5a2 100%) !important;
-  color:#111111 !important;
+  color:#363530 !important;
   border:1px solid rgba(255,255,255,.95) !important;
   box-shadow:
     0 5px 0 #9c8976,
@@ -6342,7 +6342,225 @@ html.from-rescue24 #savedResultFab{
     -webkit-text-fill-color:#ffe0a8 !important;
   }
 }
-</style></head>
+</style>
+<style id="from-rescue24-sales-route-v1">
+.rescue-entry-banner{display:none}
+
+html.from-rescue24 .rescue-entry-banner{
+  display:block;
+  padding:22px 0 12px;
+  background:
+    radial-gradient(circle at 88% 8%,rgba(184,95,66,.12),transparent 28%),
+    linear-gradient(180deg,#f7f4ee,#efe9df);
+}
+html.from-rescue24 .rescue-entry-card{
+  max-width:820px;
+  margin:auto;
+  padding:26px 24px;
+  border-radius:26px;
+  background:
+    radial-gradient(circle at 92% 5%,rgba(255,255,255,.18),transparent 28%),
+    linear-gradient(145deg,#304a38,#1f3428);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 20px 44px rgba(31,52,40,.18);
+  text-align:center;
+}
+html.from-rescue24 .rescue-entry-kicker{
+  display:inline-block;
+  padding:7px 11px;
+  border-radius:999px;
+  background:rgba(255,255,255,.10);
+  color:#ffbd9f;
+  font-size:.68rem;
+  font-weight:900;
+  letter-spacing:.11em;
+}
+html.from-rescue24 .rescue-entry-card h2{
+  color:#fff;
+  margin:12px auto 10px;
+  max-width:680px;
+  font-size:clamp(2rem,5vw,3.2rem);
+}
+html.from-rescue24 .rescue-entry-card p{
+  max-width:650px;
+  margin:0 auto;
+  color:rgba(255,255,255,.80);
+  line-height:1.55;
+}
+html.from-rescue24 .rescue-entry-value{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  max-width:650px;
+  margin:20px auto 12px;
+}
+html.from-rescue24 .rescue-entry-value span{
+  padding:10px 12px;
+  border-radius:14px;
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.78);
+  font-size:.78rem;
+  font-weight:700;
+}
+html.from-rescue24 .rescue-entry-value span b{
+  color:#fff;
+  font-size:.96rem;
+}
+html.from-rescue24 .rescue-entry-value strong{
+  grid-column:1/-1;
+  padding:12px 14px;
+  border-radius:14px;
+  background:linear-gradient(180deg,#d87852,#ad4e34);
+  color:#fff8ef;
+  font-size:.88rem;
+}
+html.from-rescue24 .rescue-entry-arrow{
+  margin-top:12px;
+  color:#ffd6c7;
+  font-size:.72rem;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+html.from-rescue24 .rescue-price-unlock{
+  margin:0 0 16px;
+  padding:16px;
+  border-radius:17px;
+  background:linear-gradient(145deg,#fff4eb,#f0dfd0);
+  border:1px solid rgba(184,95,66,.22);
+  color:#88402d;
+  font-weight:800;
+  line-height:1.45;
+}
+html.from-rescue24 .rescue-price-unlock b{
+  display:block;
+  margin-bottom:4px;
+  font-size:1.05rem;
+}
+
+/* Existing rule already hides quiz bridges; these are explicit insurance for rescue traffic. */
+html.from-rescue24 #quiz-bridge-mid,
+html.from-rescue24 .sales-quiz-bridge,
+html.from-rescue24 .sales-to-quiz{
+  display:none!important;
+}
+
+@media(max-width:700px){
+  html.from-rescue24 .rescue-entry-banner{padding:12px 0 8px}
+  html.from-rescue24 .rescue-entry-card{
+    padding:20px 16px;
+    border-radius:22px;
+  }
+  html.from-rescue24 .rescue-entry-card h2{
+    font-size:2rem;
+  }
+  html.from-rescue24 .rescue-entry-value{
+    grid-template-columns:1fr;
+  }
+  html.from-rescue24 .rescue-entry-value strong{
+    grid-column:auto;
+  }
+}
+</style>
+
+
+<style id="quiz-bridge-marfil-v1">
+#quiz-bridge-mid .sales-quiz-bridge__inner,
+#quiz-bridge-final .sales-quiz-bridge__inner{
+  background-color:#e7ddcf !important;
+  background-image:
+    radial-gradient(circle at 20% 25%,rgba(255,255,255,.30) 0 1px,transparent 1.5px),
+    radial-gradient(circle at 76% 68%,rgba(80,63,48,.045) 0 1px,transparent 1.5px),
+    linear-gradient(145deg,rgba(255,255,255,.16),rgba(126,91,63,.035)) !important;
+  background-size:21px 21px,25px 25px,100% 100% !important;
+  border-color:rgba(110,83,61,.18) !important;
+  box-shadow:0 14px 34px rgba(67,52,41,.12) !important;
+  color:#34332f !important;
+}
+
+#quiz-bridge-mid .sales-quiz-bridge__inner h2,
+#quiz-bridge-final .sales-quiz-bridge__inner h2{
+  color:#34332f !important;
+}
+
+#quiz-bridge-mid .sales-quiz-bridge__inner p,
+#quiz-bridge-final .sales-quiz-bridge__inner p,
+#quiz-bridge-mid .sales-quiz-bridge__inner small,
+#quiz-bridge-final .sales-quiz-bridge__inner small{
+  color:#655e56 !important;
+}
+
+#quiz-bridge-mid .sales-quiz-bridge__eyebrow,
+#quiz-bridge-final .sales-quiz-bridge__eyebrow{
+  color:#b84f3b !important;
+}
+</style>
+
+
+<style id="rescue24-discount-cta-v2">
+/* SOLO para quien llega desde Rescate 24H */
+#rescue24-exclusive-cta{display:none}
+
+html.from-rescue24 #rescue24-exclusive-cta{
+  position:fixed;
+  z-index:2147483646;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:18px;
+  width:min(560px,calc(100% - 28px));
+  min-height:62px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:10px 18px;
+  border-radius:18px;
+  color:#fff9f1;
+  text-decoration:none;
+  text-align:center;
+  background:
+    radial-gradient(circle at 22% 0%,rgba(255,255,255,.23),transparent 34%),
+    linear-gradient(180deg,#c86a49,#a64a31);
+  border:1px solid rgba(255,255,255,.38);
+  box-shadow:
+    0 14px 32px rgba(92,40,25,.30),
+    0 5px 0 #783925,
+    inset 0 1px 0 rgba(255,255,255,.34);
+}
+html.from-rescue24 #rescue24-exclusive-cta small{
+  display:block;
+  color:#ffe0ce;
+  font-size:.58rem;
+  font-weight:900;
+  letter-spacing:.12em;
+  margin-bottom:2px;
+}
+html.from-rescue24 #rescue24-exclusive-cta strong{
+  display:block;
+  font-size:.92rem;
+  line-height:1.15;
+}
+
+/* En la ruta Rescate ocultamos los CTA móviles genéricos para no competir. */
+html.from-rescue24 #conversion-fab-v8,
+html.from-rescue24 #mobile-step1-v19,
+html.from-rescue24 #mobile-step2-v19{
+  display:none!important;
+}
+
+html.from-rescue24 body{
+  padding-bottom:100px!important;
+}
+
+@supports (bottom: env(safe-area-inset-bottom)){
+  html.from-rescue24 #rescue24-exclusive-cta{
+    bottom:calc(14px + env(safe-area-inset-bottom));
+  }
+}
+</style>
+
+</head>
 <body>
 <header class="hero">
 <div class="wrap">
@@ -6415,7 +6633,23 @@ html.from-rescue24 #savedResultFab{
 </div></div><div class="v5-dots hero-swipe-dots" id="hero-swipe-dots"><i class="active"></i><i class=""></i><i class=""></i><i class=""></i></div>
 </div>
 </div>
-</header><section aria-label="Resumen rápido de Método Reinicio 14" class="mobile-swipe-v2" id="mobile-swipe-v2">
+</header>
+<section class="rescue-entry-banner" id="rescate-continuacion" aria-label="Continuación después de Rescate 24H">
+  <div class="wrap">
+    <div class="rescue-entry-card">
+      <span class="rescue-entry-kicker">✓ RESCATE 24H COMPLETADO</span>
+      <h2>Ya resolviste hoy. Ahora mira cómo sostenerlo durante 14 días.</h2>
+      <p>Reinicio 14 convierte ese primer rescate en un sistema completo para avanzar sin volver a empezar de cero.</p>
+      <div class="rescue-entry-value">
+        <span>Valor del sistema <b>$849</b></span>
+        <span>Precio de introducción <b>$249</b></span>
+        <strong>+ 15% adicional desbloqueado por completar tu Rescate 24H</strong>
+      </div>
+      <div class="rescue-entry-arrow">MIRA TODO LO QUE INCLUYE ↓</div>
+    </div>
+  </div>
+</section>
+<section aria-label="Resumen rápido de Método Reinicio 14" class="mobile-swipe-v2" id="mobile-swipe-v2">
 <div class="mobile-swipe-head">
 <span>DESLIZA LAS TARJETAS</span>
 <strong>← Arrastra con el dedo para ver las 5 partes →</strong>
@@ -7591,5 +7825,131 @@ document.addEventListener('DOMContentLoaded', function(){
   window.addEventListener('pageshow', apply);
   window.addEventListener('storage', apply);
 })();
-</script></body>
+</script>
+<script id="from-rescue24-sales-route-v1">
+(function(){
+  if(!document.documentElement.classList.contains('from-rescue24')) return;
+
+  var SPECIAL_CHECKOUT = 'https://pay.hotmart.com/L106914038U?off=m3vkyn3j';
+
+  function prepareRescueRoute(){
+    /* Never send a rescue user back to the quiz. */
+    document.querySelectorAll('.sales-quiz-bridge,.sales-to-quiz,#savedResultFab')
+      .forEach(function(el){ el.style.setProperty('display','none','important'); });
+
+    /* Every checkout CTA on this route uses the special offer only. */
+    document.querySelectorAll('a[href*="pay.hotmart.com/L106914038U"]')
+      .forEach(function(a){ a.href = SPECIAL_CHECKOUT; });
+
+    /* Main price card explains what the 15% is relative to. */
+    var card = document.querySelector('#comprar .price-card');
+    if(card && !card.querySelector('.rescue-price-unlock')){
+      var box = document.createElement('div');
+      box.className = 'rescue-price-unlock';
+      box.innerHTML =
+        '<b>Tu beneficio por completar Rescate 24H</b>'+
+        'Valor del sistema: $849 · precio de introducción: $249 · '+
+        '<strong>tú desbloqueaste 15% adicional.</strong>';
+      var buy = card.querySelector('.js-buy');
+      if(buy) card.insertBefore(box,buy);
+    }
+
+    /* Rescue traffic should not see a $249 CTA when its checkout has an extra benefit. */
+    document.querySelectorAll('#comprar .js-buy').forEach(function(a){
+      a.innerHTML = 'ACTIVAR MI 15% Y EMPEZAR →';
+    });
+
+    var mobile2 = document.getElementById('mobile-step2-v19');
+    if(mobile2){
+      mobile2.href = SPECIAL_CHECKOUT;
+      var kicker = mobile2.querySelector('.m19-kicker');
+      var main = mobile2.querySelector('.m19-main');
+      if(kicker) kicker.textContent = 'BENEFICIO RESCATE 24H';
+      if(main) main.textContent = 'ACTIVAR MI 15% →';
+    }
+
+    /* First mobile CTA now sells continuation, not a cold-start action. */
+    var mobile1 = document.getElementById('mobile-step1-v19');
+    if(mobile1){
+      var k1 = mobile1.querySelector('.m19-kicker');
+      var m1 = mobile1.querySelector('.m19-main');
+      if(k1) k1.textContent = 'TU SIGUIENTE PASO';
+      if(m1) m1.textContent = 'VER TODO LO QUE INCLUYE →';
+    }
+
+    /* The old #productShowcase is hidden on mobile.
+       Rescue traffic gets a deterministic visible entry point instead. */
+    var entry = document.getElementById('rescate-continuacion');
+    if(entry){
+      setTimeout(function(){
+        entry.scrollIntoView({behavior:'auto',block:'start'});
+      },80);
+    }
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded',prepareRescueRoute);
+  }else{
+    prepareRescueRoute();
+  }
+})();
+</script>
+
+
+<a id="rescue24-exclusive-cta"
+   href="https://pay.hotmart.com/L106914038U?off=m3vkyn3j"
+   rel="noopener"
+   target="_blank">
+  <small>BENEFICIO DESBLOQUEADO · RESCATE 24H</small>
+  <strong>RECLAMAR MI 15% Y EMPEZAR REINICIO 14 →</strong>
+</a>
+
+
+<script id="rescue24-discount-routing-v2">
+(function(){
+  if(!document.documentElement.classList.contains('from-rescue24')) return;
+
+  var SPECIAL='https://pay.hotmart.com/L106914038U?off=m3vkyn3j';
+
+  function isPurchaseLink(a){
+    if(!a) return false;
+    if(a.id === 'rescue24-exclusive-cta') return true;
+    if(a.classList && a.classList.contains('js-buy')) return true;
+    try{
+      var u=new URL(a.href,location.href);
+      return u.hostname==='pay.hotmart.com' && u.pathname.indexOf('/L106914038U')===0;
+    }catch(e){ return false; }
+  }
+
+  function forceSpecial(){
+    document.querySelectorAll('a').forEach(function(a){
+      if(isPurchaseLink(a)){
+        a.href=SPECIAL;
+        if(a.classList.contains('js-buy')){
+          if(!a.dataset.rescueCopy){
+            a.dataset.rescueCopy='1';
+            a.textContent='RECLAMAR MI 15% Y EMPEZAR →';
+          }
+        }
+      }
+    });
+  }
+
+  /* Protege contra scripts antiguos que vuelvan a colocar el checkout normal. */
+  document.addEventListener('click',function(ev){
+    var a=ev.target.closest && ev.target.closest('a');
+    if(!isPurchaseLink(a)) return;
+    a.href=SPECIAL;
+  },true);
+
+  forceSpecial();
+  setTimeout(forceSpecial,250);
+  setTimeout(forceSpecial,1200);
+
+  var mo=new MutationObserver(function(){ forceSpecial(); });
+  mo.observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['href']});
+})();
+</script>
+
+</body>
 </html>
