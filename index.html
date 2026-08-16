@@ -6547,6 +6547,26 @@ html.from-rescue24 body{padding-bottom:105px!important}
 }
 </style>
 
+
+<style id="rescue24-cut-hero-gap">
+/* SOLO ruta Rescate 24H en móvil:
+   elimina el colchón oscuro entre el hero y el bloque de continuidad. */
+@media(max-width:700px){
+  html.from-rescue24 .hero{
+    padding-bottom:0 !important;
+  }
+  html.from-rescue24 .hero .hero-grid{
+    padding-bottom:12px !important;
+  }
+  html.from-rescue24 .hero::after{
+    display:none !important;
+  }
+  html.from-rescue24 .rescue-entry-banner{
+    padding-top:0 !important;
+  }
+}
+</style>
+
 </head>
 <body>
 <header class="hero">
